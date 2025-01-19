@@ -1,5 +1,6 @@
 using EduConnect.API.Context;
 using EduConnect.API.Extensions;
+using EduConnect.API.Profiles;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(configuration =>
 // Swagger config
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// add AutoMapper
+builder.Services.AddAutoMapper(typeof(EduConnectProfile));
 
 var app = builder.Build();
 
