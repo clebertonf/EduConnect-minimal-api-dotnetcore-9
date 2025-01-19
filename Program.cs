@@ -19,6 +19,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(configuration =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// json IgnoreCycles
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+{
+    options.SerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+});
+
+
 // add AutoMapper
 builder.Services.AddAutoMapper(typeof(EduConnectProfile));
 
