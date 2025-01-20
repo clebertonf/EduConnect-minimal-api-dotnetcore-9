@@ -5,6 +5,7 @@ namespace EduConnect.API.Extensions;
 public static class EndPointRouterBuilderExtensions
 {
     public static void RegisterStudentEndpoints(this IEndpointRouteBuilder endpoints)
+    
     {
         var baseEndpoint = endpoints.MapGroup("/").WithTags("Student");
         baseEndpoint.MapGet("students", StudentHandlers.GetStudentsAsync);
@@ -20,8 +21,12 @@ public static class EndPointRouterBuilderExtensions
     
     public static void RegisterAddressEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        var baseEndpoint = endpoints.MapGroup("/address").WithTags("Address");
-        baseEndpoint.MapGet("", AddressHandlers.GetAddressAsync);
+        var baseEndpoint = endpoints.MapGroup("/").WithTags("Address");
+        baseEndpoint.MapGet("address", AddressHandlers.GetAddressAsync);
+        baseEndpoint.MapGet("address/{id:int}", AddressHandlers.GetAddressByIdAsync).WithName("GetAddressById");
+        baseEndpoint.MapPost("address", AddressHandlers.CreateAddressAsync);
+        baseEndpoint.MapPut("address/{id:int}", AddressHandlers.UpdateAddressAsync);
+        baseEndpoint.MapDelete("address/{id:int}", AddressHandlers.DeleteAddressAsync);
     }
     
     public static void RegisterCourseEndpoints(this IEndpointRouteBuilder endpoints)
