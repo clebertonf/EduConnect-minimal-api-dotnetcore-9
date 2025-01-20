@@ -10,11 +10,14 @@ public class EduConnectProfile : Profile
     {
         CreateMap<Student, StudentDto>().ReverseMap();
         CreateMap<Student, StudentCreateDto>().ReverseMap();
+        
         CreateMap<Address, AddressDto>().ReverseMap();
         CreateMap<Address, AddressCreateDto>().ReverseMap();
+        
         CreateMap<Course, CourseDto>().ReverseMap();
         CreateMap<Course, CourseCreateDto>().ReverseMap();
+        
         CreateMap<Enrollment, EnrollmentDto>().ReverseMap();
-        CreateMap<Enrollment, EnrollmentDto>().ReverseMap();
+        CreateMap<Enrollment, EnrollmentCreateDto>().ReverseMap();
     }
 }

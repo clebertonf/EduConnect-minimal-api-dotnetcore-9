@@ -41,7 +41,11 @@ public static class EndPointRouterBuilderExtensions
     
     public static void RegisterEnrollmentEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        var baseEndpoint = endpoints.MapGroup("/enrollment").WithTags("Enrollment");
-        baseEndpoint.MapGet("", EnrollmentHandlers.GetEnrollmentsAsync);
+        var baseEndpoint = endpoints.MapGroup("/").WithTags("Enrollment");
+        baseEndpoint.MapGet("enrollment", EnrollmentHandlers.GetEnrollmentsAsync);
+        baseEndpoint.MapGet("enrollment/{id:int}", EnrollmentHandlers.GetEnrollmetByIdAsync).WithName("GetEnrollmentById");
+        baseEndpoint.MapPost("enrollment", EnrollmentHandlers.CreateEnrollmentAsync);
+        baseEndpoint.MapPut("enrollment/{id:int}", EnrollmentHandlers.UpdateEnrollmetAsync);
+        baseEndpoint.MapDelete("enrollment/{id:int}", EnrollmentHandlers.DeleteEnrollmentAsync);
     }
 }
