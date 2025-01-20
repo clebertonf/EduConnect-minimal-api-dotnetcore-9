@@ -48,4 +48,12 @@ public static class EndPointRouterBuilderExtensions
         baseEndpoint.MapPut("enrollment/{id:int}", EnrollmentHandlers.UpdateEnrollmetAsync);
         baseEndpoint.MapDelete("enrollment/{id:int}", EnrollmentHandlers.DeleteEnrollmentAsync);
     }
+
+    public static void RegisterDashboardEndpoints(this IEndpointRouteBuilder endpoints)
+    {
+        var baseEndpoint = endpoints.MapGroup("Dashboard/").WithTags("Dashboard");
+        baseEndpoint.MapGet("students/{id:int}/details", DashboardHandlers.GetStudantsDetailsAsync);
+        baseEndpoint.MapGet("courses/{id:int}/details", DashboardHandlers.GetCourseDetailsAsync);
+        baseEndpoint.MapGet("statistics", DashboardHandlers.GetGeneralStatisticsAsync);
+    }
 }

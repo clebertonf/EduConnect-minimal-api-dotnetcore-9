@@ -46,5 +46,6 @@ app.RegisterAddressEndpoints();
 app.RegisterCourseEndpoints();
 app.RegisterEnrollmentEndpoints();
 app.RegisterStudentEndpoints();
+app.RegisterDashboardEndpoints();
 
 app.Run();
