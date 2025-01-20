@@ -31,8 +31,12 @@ public static class EndPointRouterBuilderExtensions
     
     public static void RegisterCourseEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        var baseEndpoint = endpoints.MapGroup("/course").WithTags("Course");
-        baseEndpoint.MapGet("", CourseHandlers.GetCoursesAsync);
+        var baseEndpoint = endpoints.MapGroup("/").WithTags("Course");
+        baseEndpoint.MapGet("courses", CourseHandlers.GetCoursesAsync);
+        baseEndpoint.MapGet("course/{id:int}", CourseHandlers.GetCourseByIdAsync).WithName("GetCourseById");
+        baseEndpoint.MapPost("course", CourseHandlers.CreateCourseAsync);
+        baseEndpoint.MapPut("course/{id:int}", CourseHandlers.UpdateCourseAsync);
+        baseEndpoint.MapDelete("course/{id:int}", CourseHandlers.DeleteCourseAsync);
     }
     
     public static void RegisterEnrollmentEndpoints(this IEndpointRouteBuilder endpoints)
